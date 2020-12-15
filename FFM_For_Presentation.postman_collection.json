@@ -1,0 +1,334 @@
+{
+	"info": {
+		"_postman_id": "a425c5b2-088f-4a7d-81df-bef80f69ebc6",
+		"name": "FFM_For_Presentation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1.1_TFS_64_Techserve4u admin should be able to register company admin",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0c91b459-e59e-4f47-8177-c2953264cd3f",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 600ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
+							"});\r",
+							"var jsonData = JSON.parse(responseBody);\r",
+							"var schema = {\r",
+							"    \"$schema\": \"http://json-schema.org/draft-07/schema\",\r",
+							"    \"$id\": \"http://example.com/example.json\",\r",
+							"    \"type\": \"object\",\r",
+							"    \"title\": \"The root schema\",\r",
+							"    \"description\": \"The root schema comprises the entire JSON document.\",\r",
+							"    \"default\": {},\r",
+							"    \"examples\": [\r",
+							"        {\r",
+							"            \"message\": \"Successfully registered dashboard user ki43500.\",\r",
+							"            \"status\": \"success\"\r",
+							"        }\r",
+							"    ],\r",
+							"    \"required\": [\r",
+							"        \"message\",\r",
+							"        \"status\"\r",
+							"    ],\r",
+							"    \"properties\": {\r",
+							"        \"message\": {\r",
+							"            \"$id\": \"#/properties/message\",\r",
+							"            \"type\": \"string\",\r",
+							"            \"title\": \"The message schema\",\r",
+							"            \"description\": \"An explanation about the purpose of this instance.\",\r",
+							"            \"default\": \"\",\r",
+							"            \"examples\": [\r",
+							"                \"Successfully registered dashboard user ki43500.\"\r",
+							"            ]\r",
+							"        },\r",
+							"        \"status\": {\r",
+							"            \"$id\": \"#/properties/status\",\r",
+							"            \"type\": \"string\",\r",
+							"            \"title\": \"The status schema\",\r",
+							"            \"description\": \"An explanation about the purpose of this instance.\",\r",
+							"            \"default\": \"\",\r",
+							"            \"examples\": [\r",
+							"                \"success\"\r",
+							"            ]\r",
+							"        }\r",
+							"    },\r",
+							"    \"additionalProperties\": true\r",
+							"}\r",
+							"\r",
+							"\r",
+							"tests[\"valid schema\"] = tv4.validate(jsonData, schema);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"ka7662t0@yahoo.com\",\r\n    \"password\": \"abc123\",\r\n    \"username\": \"ki06636500\",\r\n    \"firstname\": \"ABC\",\r\n    \"lastname\": \"XYZ\",\r\n    \"company_id\": 734,\r\n    \"member_type\": 2\r\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/field-force/auth/register-dashboard-user",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"field-force",
+						"auth",
+						"register-dashboard-user"
+					]
+				},
+				"description": "BRD: Techserve4u admin should be able to register company admin\r\n\r\nObjective: As a super admin, I want to register company admin from the admin panel so that the admin can log in to the web admin panel and can manage the company.\r\n\r\nSE: Shiblu Ahmad\r\nPO: Pranto Majumder\r\nQA: Kafil Ahmed\r\nReviewer: Pranto Majumder.\r\n\r\nAcceptance Criteria: \r\nI should be able to register the company admin for a particular company.\r\nRegister company admin webpage should contain this information:\r\nFirst Name\r\nLast Name\r\nUsername\r\nEmail\r\nPassword\r\nCreate and cancel button\r\nDependency:\r\nThe registered super admin should be login to the admin panel\r\n\r\n\r\nMethod: Post\r\n\r\nBody: \r\n\r\n{\r\n    \"email\": \"ka7662t0@yahoo.com\",\r\n    \"password\": \"abc123\",\r\n    \"username\": \"ki06636500\",\r\n    \"firstname\": \"ABC\",\r\n    \"lastname\": \"XYZ\",\r\n    \"company_id\": 734,\r\n    \"member_type\": 2\r\n}\r\nExpected Result:\r\n{\r\n    \"message\": \"Successfully registered dashboard user kafil30.\",\r\n    \"status\": \"success\"\r\n}\r\n\r\nActual Result:\r\n{\r\n    \"message\": \"Successfully registered dashboard user kafil30.\",\r\n    \"status\": \"success\"\r\n}\r\n\r\nStatus Code: 201 Created\r\n\r\nTest Result: Passed\r\n\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "1.1_TFS_62_Dashboard User (Company admin) login in admin panel",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c049713b-678b-4958-ab32-f224a7a4c591",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 1300ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1300);\r",
+							"});\r",
+							"var jsonData = JSON.parse(responseBody);\r",
+							"\r",
+							"postman.setEnvironmentVariable(\"auth_token_company_admin\",jsonData.auth_token);\r",
+							"\r",
+							"var schema = {\r",
+							"    \r",
+							"    \"$schema\": \"http://json-schema.org/draft-07/schema\",\r",
+							"    \"$id\": \"http://example.com/example.json\",\r",
+							"    \"type\": \"object\",\r",
+							"    \"title\": \"The root schema\",\r",
+							"    \"description\": \"The root schema comprises the entire JSON document.\",\r",
+							"    \"default\": {},\r",
+							"    \"examples\": [\r",
+							"        {\r",
+							"            \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDYxOTQ4OTYsImlhdCI6MTYwNjE5MTI5Niwic3ViIjo5MDQsInVzZXJfdHlwZSI6IkRhc2hib2FyZCIsIm5hbWUiOiJBQkMgWFlaIiwiZW1haWwiOiJrYTcwNzJ0MEB5YWhvby5jb20iLCJtZW1iZXJfdHlwZSI6MiwiY29tcGFueV9pZCI6NzM0LCJkZXNpZ25hdGlvbiI6bnVsbCwiZGVwYXJ0bWVudCI6bnVsbH0.QXH4kUZJ6aGC85amJ7WbkZJKGAaBCJLUTwJpk2ERbw0\",\r",
+							"            \"message\": \"Successfully logged in.\",\r",
+							"            \"status\": \"success\"\r",
+							"        }\r",
+							"    ],\r",
+							"    \"required\": [\r",
+							"        \"auth_token\",\r",
+							"        \"message\",\r",
+							"        \"status\"\r",
+							"    ],\r",
+							"    \"properties\": {\r",
+							"        \"auth_token\": {\r",
+							"            \"$id\": \"#/properties/auth_token\",\r",
+							"            \"type\": \"string\",\r",
+							"            \"title\": \"The auth_token schema\",\r",
+							"            \"description\": \"An explanation about the purpose of this instance.\",\r",
+							"            \"default\": \"\",\r",
+							"            \"examples\": [\r",
+							"                \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDYxOTQ4OTYsImlhdCI6MTYwNjE5MTI5Niwic3ViIjo5MDQsInVzZXJfdHlwZSI6IkRhc2hib2FyZCIsIm5hbWUiOiJBQkMgWFlaIiwiZW1haWwiOiJrYTcwNzJ0MEB5YWhvby5jb20iLCJtZW1iZXJfdHlwZSI6MiwiY29tcGFueV9pZCI6NzM0LCJkZXNpZ25hdGlvbiI6bnVsbCwiZGVwYXJ0bWVudCI6bnVsbH0.QXH4kUZJ6aGC85amJ7WbkZJKGAaBCJLUTwJpk2ERbw0\"\r",
+							"            ]\r",
+							"        },\r",
+							"        \"message\": {\r",
+							"            \"$id\": \"#/properties/message\",\r",
+							"            \"type\": \"string\",\r",
+							"            \"title\": \"The message schema\",\r",
+							"            \"description\": \"An explanation about the purpose of this instance.\",\r",
+							"            \"default\": \"\",\r",
+							"            \"examples\": [\r",
+							"                \"Successfully logged in.\"\r",
+							"            ]\r",
+							"        },\r",
+							"        \"status\": {\r",
+							"            \"$id\": \"#/properties/status\",\r",
+							"            \"type\": \"string\",\r",
+							"            \"title\": \"The status schema\",\r",
+							"            \"description\": \"An explanation about the purpose of this instance.\",\r",
+							"            \"default\": \"\",\r",
+							"            \"examples\": [\r",
+							"                \"success\"\r",
+							"            ]\r",
+							"        }\r",
+							"    },\r",
+							"    \"additionalProperties\": true\r",
+							"}\r",
+							"tests[\"valid schema\"] = tv4.validate(jsonData, schema);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"ka7662t0@yahoo.com\",\r\n    \"password\": \"abc123\"\r\n\r\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/field-force/auth/dashboard-user-login",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"field-force",
+						"auth",
+						"dashboard-user-login"
+					]
+				},
+				"description": "BRD: Dashboard User (Techserve4u/Company admin) login in admin panel\r\nObjective: \r\nAs a company admin, I want to login to the admin panel so that I can avail of services available according to my member type\r\n\r\n\r\nSE: Shiblu Ahmad\r\nPO: Pranto Majumder\r\nQA: Kafil Ahmed\r\nReviewer: Pranto Majumder.\r\n\r\nAcceptance Criteria:\r\nI will get my login credentials from my super admin.\r\nIf I want to login as a techserve4u admin then I have to register on techserve4u panel or if I want to login as a company admin then I have to register on the company panel.\r\n\r\nDependency: \r\nRegister Dashboard User should be able to log in to the admin panel.\r\n\r\n\r\nMethod: POST \r\n\r\nBody: (\"email\" and \"password\" must be registered)\r\n{\r\n    \"email\": \"ka7662t0@yahoo.com\",\r\n    \"password\": \"abc123\"\r\n\r\n}\r\nExpected Result:\r\n{\r\n    \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDUwNjc1NTcsImlhdCI6MTYwNTA2Mzk1Nywic3ViIjo4MDIsInVzZXJfdHlwZSI6IkRhc2hib2FyZCIsIm5hbWUiOiJBQkMgWFlaIiwiZW1haWwiOiJrYWY3MjBAeWFob28uY29tIiwibWVtYmVyX3R5cGUiOjIsImNvbXBhbnlfaWQiOjczNCwiZGVzaWduYXRpb24iOm51bGwsImRlcGFydG1lbnQiOm51bGx9.8vF7O74iP4RCXaVaBEbZyVS8RGO2IU203jNAuVXscHk\",\r\n    \"message\": \"Successfully logged in.\",\r\n    \"status\": \"success\"\r\n}\r\n\r\nActual Result:\r\n{\r\n    \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDUwNjc1NTcsImlhdCI6MTYwNTA2Mzk1Nywic3ViIjo4MDIsInVzZXJfdHlwZSI6IkRhc2hib2FyZCIsIm5hbWUiOiJBQkMgWFlaIiwiZW1haWwiOiJrYWY3MjBAeWFob28uY29tIiwibWVtYmVyX3R5cGUiOjIsImNvbXBhbnlfaWQiOjczNCwiZGVzaWduYXRpb24iOm51bGwsImRlcGFydG1lbnQiOm51bGx9.8vF7O74iP4RCXaVaBEbZyVS8RGO2IU203jNAuVXscHk\",\r\n    \"message\": \"Successfully logged in.\",\r\n    \"status\": \"success\"\r\n}\r\n\r\nStatus Code: 200 OK\r\n\r\nTest Result: Pass\r\n\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "TFS_63_1.1_Company admin should be able to authenticate for the admin panel",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b86a856d-a7c6-4db9-80f7-198edb3a70d4",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 1300ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1300);\r",
+							"});\r",
+							"\r",
+							"var jsonData = JSON.parse(responseBody);\r",
+							"\r",
+							"var schema = {\r",
+							"    \"$schema\": \"http://json-schema.org/draft-07/schema\",\r",
+							"    \"$id\": \"http://example.com/example.json\",\r",
+							"    \"type\": \"object\",\r",
+							"    \"title\": \"The root schema\",\r",
+							"    \"description\": \"The root schema comprises the entire JSON document.\",\r",
+							"    \"default\": {},\r",
+							"    \"examples\": [\r",
+							"        {\r",
+							"            \"data\": 1015,\r",
+							"            \"status\": \"success\"\r",
+							"        }\r",
+							"    ],\r",
+							"    \"required\": [\r",
+							"        \"data\",\r",
+							"        \"status\"\r",
+							"    ],\r",
+							"    \"properties\": {\r",
+							"        \"data\": {\r",
+							"            \"$id\": \"#/properties/data\",\r",
+							"            \"type\": \"integer\",\r",
+							"            \"title\": \"The data schema\",\r",
+							"            \"description\": \"An explanation about the purpose of this instance.\",\r",
+							"            \"default\": 0,\r",
+							"            \"examples\": [\r",
+							"                1015\r",
+							"            ]\r",
+							"        },\r",
+							"        \"status\": {\r",
+							"            \"$id\": \"#/properties/status\",\r",
+							"            \"type\": \"string\",\r",
+							"            \"title\": \"The status schema\",\r",
+							"            \"description\": \"An explanation about the purpose of this instance.\",\r",
+							"            \"default\": \"\",\r",
+							"            \"examples\": [\r",
+							"                \"success\"\r",
+							"            ]\r",
+							"        }\r",
+							"    },\r",
+							"    \"additionalProperties\": true\r",
+							"}\r",
+							"tests[\"valid schema\"] = tv4.validate(jsonData, schema);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token_company_admin}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/v1/field-force/auth/authenticate-dashboard-user",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"field-force",
+						"auth",
+						"authenticate-dashboard-user"
+					]
+				},
+				"description": "BRD: Techserve4u admin and company admin should be able to authenticate for the admin panel\r\n\r\nObjective: As a techserve4u and company admin, I want to see the admin is authenticated one or not so that I can be sure that which admin is authenticated.\r\n\r\nSE: Shiblu Ahmad\r\nPO: Pranto Majumder\r\nQA: Kafil Ahmed\r\nReviewer: Pranto Majumder.\r\n\r\nDependency:\r\nRegistered techserve4u or company admin should be able to login with valid credentials.\r\n\r\nMethod: GET\r\n\r\nExpected Result:\r\n{\r\n    \"data\": 1015,\r\n    \"status\": \"success\"\r\n}\r\n\r\nActual Result:\r\n{\r\n    \"data\": 1015,\r\n    \"status\": \"success\"\r\n}\r\n\r\nStatus Code: 200 OK\r\n\r\nTest Result: Pass\r\n\r\n"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "de9565ac-1eab-43b5-ab01-d44fd6cddbe5",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "820f7ab8-4dc5-4b21-8afa-1cff61618a37",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
